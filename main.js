@@ -1,9 +1,9 @@
-/**
+/*******************************************************************
  * Othello
  * Javascript project for CIS 343.
  * Command-line version of Othello.
  * @author: Kelly Hancox
- */
+ ********************************************************************/
 
 // Import board definitions
 const board = require('./board.js');
@@ -19,7 +19,6 @@ function saveFile(file, contents){
 	let fs = require('fs');
 	fs.writeFileSync(file, JSON.stringify(contents));
 }
-
 
  /**********************************************************************
 	* loadFile
@@ -56,8 +55,6 @@ function start(){
 	let currentDisc;
 	let row;
 	let col;
-
-	console.log("isGameOver() is " + myBoard.isGameOver());
 
 	// Loop, asking user input, calling appropriate functions.
 	while (myBoard.isGameOver() == false) {
@@ -103,6 +100,8 @@ function start(){
 			myBoard.printBoard();
 
 		}
+
+		console.log(myBoard.checkWinner() + 'Wins!');
 	// Save board example code.
 	saveFile("test.json", myBoard);
 }

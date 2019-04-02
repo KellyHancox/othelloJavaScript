@@ -268,28 +268,35 @@ checkDown(row, col, disc, oppositeDisc){
  * ***************************************************/
 checkDownLeft(row, col, disc, oppositeDisc){
 
-    let oppositeCount = 0;
+		let oppositeCount = 0;
 
-    if(this.board[row+1][col-1] == oppositeDisc){
+		if(this.board[row+1][col-1] == oppositeDisc){
+				while (row + 1 <= this.width && col - 1 >= 0){
+					console.log('row is: ' + row);
+					console.log('col is: ' + col);
 
-        while (row + 1 <= this.width && col-1 >= 0){
+						oppositeCount++;
 
-            oppositeCount++;
+						console.log('oppcount is: ' + oppositeCount);
 
-            if(this.board[row+1][col-1] == disc) {
-                return oppositeCount;
-            }
+						if(this.board[row+1][col-1] == disc){
 
-            else if(this.board[row+1][col-1] != disc &&
-                    this.board[row+1][col-1] != oppositeDisc){
-                return 0;
-            }
-            row++;
-            col--;
+							console.log('oppcount now is: ' + oppositeCount);
+								return oppositeCount;
+						}
+						else if(this.board[row+1][col-1] != disc &&
+										this.board[row+1][col-1] != oppositeDisc){
+								return 0;
+						}
 
-        }
-    }
-    return 0;
+						row++;
+						col--;
+						console.log('row now is: ' + row);
+						console.log('col now is: ' + col);
+				}
+		}
+		return 0;
+
 }
 
 /* ****************************************************
@@ -333,13 +340,9 @@ checkLeft(row, col, disc, oppositeDisc){
 	 * @param disc A character for the disc color.
 	 * @return boolean Whether valid move or not
 	 **********************************************************************/
-
 	isValidMove(row, col, disc){
 
-		//console.log('row: ' + row);
-		//console.log('col: ' + col);
-		//console.log('disc: ' + disc);
-		//console.log(this.board[row][col]);
+		console.log("inside isValidMove");
 
 		if(this.board [row][col] != '-'){
 		        return false;
@@ -587,6 +590,8 @@ checkLeft(row, col, disc, oppositeDisc){
  	 	* @param disc A character standing for disc color.
 		******************************************************/
 	placeDiscAt(row, col, disc){
+
+		console.log("inside placeDiscAt");
 		let opposite = null;
 
 	     if (disc == 'W') {
@@ -710,7 +715,7 @@ checkLeft(row, col, disc, oppositeDisc){
 	             let up = this.checkUp(row, col, disc, opposite);
 	             let upRight = this.checkUpRight(row, col, disc, opposite);
 	             let right = this.checkRight(row, col, disc, opposite);
-	             let downRight = this.checkDownRight(board, row, col, disc, opposite);
+	             let downRight = this.checkDownRight(row, col, disc, opposite);
 	             let down = this.checkDown(row, col, disc, opposite);
 
 	             this.changeUpDisc(row, col, disc, opposite, up);
@@ -749,6 +754,7 @@ checkLeft(row, col, disc, oppositeDisc){
 	isValidMoveAvailable(disc){
 		//only need to find first one
 
+		console.log("inside validMoveAvailable");
 	     for(let i = 0; i < this.height; i++){
 	         for(let j = 0; j < this.width; j++){
 	             if(this.board [i][j] == '-'){
