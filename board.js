@@ -168,8 +168,8 @@ checkRight(row, col, disc, oppositeDisc){
 
     if(this.board[row][col+1] == oppositeDisc){
 
-//changed to <
-        while(col + 1 < this.height){
+//changed back to <=
+        while(col + 1 <= this.height){
 
             oppositeCount++;
 
@@ -204,8 +204,8 @@ checkDownRight(row, col, disc, oppositeDisc){
 
     if(this.board[row+1][col+1] == oppositeDisc){
 
-//changed to <
-        while (row + 1 < this.width && col + 1 < this.height){
+//changed back to <= for checkRight
+        while (row + 1 < this.width && col + 1 <= this.height){
 
             oppositeCount++;
 
@@ -276,16 +276,16 @@ checkDownLeft(row, col, disc, oppositeDisc){
 
 			//changd to < this.width
 				while (row + 1 < this.width && col - 1 >= 0){
-					console.log('row is: ' + row);
-					console.log('col is: ' + col);
+					//console.log('row is: ' + row);
+					//console.log('col is: ' + col);
 
 						oppositeCount++;
 
-						console.log('oppcount is: ' + oppositeCount);
+						//console.log('oppcount is: ' + oppositeCount);
 
 						if(this.board[row+1][col-1] == disc){
 
-							console.log('oppcount now is: ' + oppositeCount);
+							//console.log('oppcount now is: ' + oppositeCount);
 								return oppositeCount;
 						}
 						else if(this.board[row+1][col-1] != disc &&
@@ -295,8 +295,8 @@ checkDownLeft(row, col, disc, oppositeDisc){
 
 						row++;
 						col--;
-						console.log('row now is: ' + row);
-						console.log('col now is: ' + col);
+						//console.log('row now is: ' + row);
+						//console.log('col now is: ' + col);
 				}
 		}
 		return 0;
@@ -346,8 +346,8 @@ checkLeft(row, col, disc, oppositeDisc){
 	 **********************************************************************/
 	isValidMove(row, col, disc){
 
-		console.log("inside isValidMove");
-		console.log("board 346: params: " + row + " " + col + " " + disc);
+		//console.log("inside isValidMove");
+		//console.log("board 346: params: " + row + " " + col + " " + disc);
 
 		if(this.board [row][col] != '-'){
 		        return false;
@@ -360,8 +360,8 @@ checkLeft(row, col, disc, oppositeDisc){
 		    }else{
 		        opposite = 'W';
 		    }
-				console.log("board 359: opposite: " + opposite);
-				console.log("board 359: disc: " + disc);
+				//console.log("board 359: opposite: " + opposite);
+				//console.log("board 359: disc: " + disc);
 
 		    //if the placement is in the middle
 		    if(row < this.height-1 && row > 0 && col > 0 && col < this.width-1){
@@ -600,7 +600,7 @@ checkLeft(row, col, disc, oppositeDisc){
 		******************************************************/
 	placeDiscAt(row, col, disc){
 
-		console.log("inside placeDiscAt");
+		//console.log("inside placeDiscAt");
 		let opposite = null;
 
 	     if (disc == 'W') {
@@ -608,9 +608,6 @@ checkLeft(row, col, disc, oppositeDisc){
 	     } else {
 	         opposite = 'W';
 	     }
-
-			 //ensures that this move is valid
-	     //if(this.isValidMove(row, col, disc) == true) {
 
 	         this.board[row][col] = disc;
 
@@ -749,8 +746,6 @@ checkLeft(row, col, disc, oppositeDisc){
 	             this.changeDownLeftDisc(row, col, disc, opposite, downLeft);
 	             this.changeLeftDisc(row, col, disc, opposite, left);
 	         }
-
-	     //}
 	}
 
 
@@ -763,10 +758,10 @@ checkLeft(row, col, disc, oppositeDisc){
 	isValidMoveAvailable(disc){
 		//only need to find first one
 
-		console.log("inside validMoveAvailable");
-		console.log("disc is: " + disc);
-		console.log("this.height is: " + this.height);
-		console.log("width is: " + this.width);
+		//console.log("inside validMoveAvailable");
+		// console.log("disc is: " + disc);
+		// console.log("this.height is: " + this.height);
+		// console.log("width is: " + this.width);
 
 	     for(let i = 0; i < this.height; i++){
 	         for(let j = 0; j < this.width; j++){
@@ -835,21 +830,22 @@ checkLeft(row, col, disc, oppositeDisc){
 
 	     for(let i = 0; i < this.height; i++){
 	         for(let j = 0; j< this.width; j++){
-	             if (this.board[i][j] === 'B'){
+	             if (this.board[i][j] == 'B'){
 	                 blackCount++;
 	             }
-	             else if(this.board[i][j] === 'W'){
+	             else if(this.board[i][j] == 'W'){
 	                 whiteCount++;
 	             }
 	         }
 	     }
 	     if(blackCount > whiteCount){
-	         return BLACK;
+	         return 'B';
 	     }
-	     else if (whiteCount < blackCount){
-	         return WHITE;
+	     if(whiteCount > blackCount){
+	         return 'W';
 	     }
-	     return null;
+			   return null;
+
 	}
 }
 
