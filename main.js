@@ -50,20 +50,20 @@ function start(){
 	myBoard.printBoard();
 
 	//start us off with B
-  let turn = 1;
+  //let turn = 1;
 
-	let currentDisc;
+	let currentDisc = 'B';
 	let row;
 	let col;
 
 	// Loop, asking user input, calling appropriate functions.
 	while (myBoard.isGameOver() == false) {
 
-		if (turn == 1){
-			currentDisc = 'B';
-		}else{
-			currentDisc = 'W';
-		}
+		// if (turn == 1){
+		// 	currentDisc = 'B';
+		// }else{
+		// 	currentDisc = 'W';
+		// }
 
 			if (myBoard.isValidMoveAvailable(currentDisc) == false) {
 				console.log('No valid moves available for player ' + turn + '. You lose your turn.');
@@ -86,18 +86,28 @@ function start(){
 					}
 					break;
 				} while (true);
+				console.log("main 89: current disc is: " + currentDisc);
 				myBoard.placeDiscAt(row,col,currentDisc);
 			}
 
-			if(turn == 1){
-				turn = 2;
-				console.log('turn is now ' + turn);
-			}else{
-				turn = 1;
-				console.log('turn is now ' + turn);
-			}
+			// if(turn == 1){
+			// 	turn = 2;
+			// 	console.log('turn is now ' + turn);
+			// }else{
+			// 	turn = 1;
+			// 	console.log('turn is now ' + turn);
+			// }
+
 
 			myBoard.printBoard();
+
+			if(currentDisc == 'B'){
+				currentDisc = 'W';
+				console.log('main 106: current disc has now changed to: ' + currentDisc);
+			}else if(currentDisc == 'W'){
+				currentDisc = 'B';
+				console.log('main 109: current disc has now changed to: ' + currentDisc);
+			}
 
 		}
 

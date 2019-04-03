@@ -168,7 +168,8 @@ checkRight(row, col, disc, oppositeDisc){
 
     if(this.board[row][col+1] == oppositeDisc){
 
-        while(col + 1 <= this.height){
+//changed to <
+        while(col + 1 < this.height){
 
             oppositeCount++;
 
@@ -203,7 +204,8 @@ checkDownRight(row, col, disc, oppositeDisc){
 
     if(this.board[row+1][col+1] == oppositeDisc){
 
-        while (row + 1 <= this.width && col + 1 <= this.height){
+//changed to <
+        while (row + 1 < this.width && col + 1 < this.height){
 
             oppositeCount++;
 
@@ -238,7 +240,7 @@ checkDown(row, col, disc, oppositeDisc){
 
     if(this.board[row+1][col] == oppositeDisc){
 
-        while (row + 1 <= this.width){
+        while (row + 1 < this.width){
 
             oppositeCount++;
 
@@ -271,7 +273,9 @@ checkDownLeft(row, col, disc, oppositeDisc){
 		let oppositeCount = 0;
 
 		if(this.board[row+1][col-1] == oppositeDisc){
-				while (row + 1 <= this.width && col - 1 >= 0){
+
+			//changd to < this.width
+				while (row + 1 < this.width && col - 1 >= 0){
 					console.log('row is: ' + row);
 					console.log('col is: ' + col);
 
@@ -343,6 +347,7 @@ checkLeft(row, col, disc, oppositeDisc){
 	isValidMove(row, col, disc){
 
 		console.log("inside isValidMove");
+		console.log("board 346: params: " + row + " " + col + " " + disc);
 
 		if(this.board [row][col] != '-'){
 		        return false;
@@ -355,6 +360,8 @@ checkLeft(row, col, disc, oppositeDisc){
 		    }else{
 		        opposite = 'W';
 		    }
+				console.log("board 359: opposite: " + opposite);
+				console.log("board 359: disc: " + disc);
 
 		    //if the placement is in the middle
 		    if(row < this.height-1 && row > 0 && col > 0 && col < this.width-1){
@@ -365,6 +372,8 @@ checkLeft(row, col, disc, oppositeDisc){
 		                this.checkRight(row, col, disc, opposite) > 0 ||
 		                this.checkDownRight(row, col, disc, opposite) > 0 ||
 		                this.checkDown(row, col, disc, opposite) > 0 ||
+
+										//console.log("board 371: right before call of checkDownLeft");
 		                this.checkDownLeft(row, col, disc, opposite) > 0 ||
 		                this.checkLeft(row, col, disc, opposite) > 0){
 		        return true;
@@ -601,7 +610,7 @@ checkLeft(row, col, disc, oppositeDisc){
 	     }
 
 			 //ensures that this move is valid
-	     if(this.isValidMove(row, col, disc) == true) {
+	     //if(this.isValidMove(row, col, disc) == true) {
 
 	         this.board[row][col] = disc;
 
@@ -741,7 +750,7 @@ checkLeft(row, col, disc, oppositeDisc){
 	             this.changeLeftDisc(row, col, disc, opposite, left);
 	         }
 
-	     }
+	     //}
 	}
 
 
@@ -755,6 +764,10 @@ checkLeft(row, col, disc, oppositeDisc){
 		//only need to find first one
 
 		console.log("inside validMoveAvailable");
+		console.log("disc is: " + disc);
+		console.log("this.height is: " + this.height);
+		console.log("width is: " + this.width);
+
 	     for(let i = 0; i < this.height; i++){
 	         for(let j = 0; j < this.width; j++){
 	             if(this.board [i][j] == '-'){
