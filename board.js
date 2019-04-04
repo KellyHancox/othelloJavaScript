@@ -844,7 +844,7 @@ checkLeft(row, col, disc, oppositeDisc){
 	     if(whiteCount > blackCount){
 	         return 'W';
 	     }
-			   return null;
+			   return 'Nobody';
 
 	}
 }
